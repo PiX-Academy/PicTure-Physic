@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>บทที่ 3 · ไฟฟ้า | Pixture-Academy</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --blue1:#3a7bd5;
+  --blue2:#7ec9ff;
+  --bg:#ffffff;
+  --bg-soft:#f4f7fb;
+  --text:#0d1117;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --radius:22px;
+  --shadow:0 18px 45px rgba(0,0,0,.08);
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  padding-top:80px;
+  background:var(--bg);
+  font-family:Inter,Prompt;
+  color:var(--text);
+  line-height:1.8;
+}
+
+/* ================= NAV ================= */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  height:80px;
+  background:rgba(255,255,255,.9);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  z-index:1000;
+}
+
+.nav-inner{
+  max-width:1200px;
+  height:100%;
+  margin:0 auto;
+  padding:0 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--blue1),var(--blue2));
+}
+
+.menu{
+  display:flex;
+  list-style:none;
+  gap:22px;
+  margin:0;
+  padding:0;
+}
+
+.menu a{
+  text-decoration:none;
+  color:var(--text);
+  font-weight:500;
+}
+
+.menu a:hover{
+  color:var(--blue1);
+}
+
+/* ================= HERO ================= */
+.hero{
+  padding:80px 24px 60px;
+  text-align:center;
+  background:var(--bg-soft);
+}
+
+.hero h1{
+  font-size:42px;
+  margin:0 0 10px;
+}
+
+.hero p{
+  color:var(--muted);
+  font-size:18px;
+}
+
+/* ================= CONTENT ================= */
+.container{
+  max-width:900px;
+  margin:60px auto;
+  padding:0 24px;
+}
+
+.section{
+  margin-bottom:60px;
+}
+
+.section h2{
+  font-size:28px;
+  margin-bottom:12px;
+}
+
+.section p{
+  color:var(--muted);
+}
+
+.card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:24px;
+  margin-top:20px;
+  box-shadow:var(--shadow);
+}
+
+.formula{
+  background:#eef4ff;
+  border-left:4px solid var(--blue1);
+  padding:14px 18px;
+  border-radius:12px;
+  margin-top:16px;
+  font-weight:600;
+}
+
+ul{
+  padding-left:20px;
+}
+
+.back{
+  display:inline-block;
+  margin-top:40px;
+  text-decoration:none;
+  color:#fff;
+  background:linear-gradient(135deg,var(--blue1),var(--blue2));
+  padding:12px 26px;
+  border-radius:999px;
+  font-weight:600;
+}
+
+/* ================= FOOTER ================= */
+footer{
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+
+    <div class="brand">
+      <div class="logo"></div>
+      <strong>Pixture-Academy</strong>
+    </div>
+
+    <ul class="menu">
+      <li><a href="index.html">หน้าแรก</a></li>
+      <li><a href="lesson2.html">บทที่ 2</a></li>
+    </ul>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <h1>บทที่ 3 · ไฟฟ้า</h1>
+  <p>พื้นฐานเกี่ยวกับประจุไฟฟ้า กระแส และความต่างศักย์</p>
+</header>
+
+<!-- CONTENT -->
+<main class="container">
+
+  <section class="section">
+    <h2>1. ประจุไฟฟ้า (Electric Charge)</h2>
+    <div class="card">
+      <p>
+        ประจุไฟฟ้าเป็นสมบัติพื้นฐานของสสาร แบ่งออกเป็น 2 ชนิด คือ
+        <strong>ประจุบวก</strong> และ <strong>ประจุลบ</strong>
+      </p>
+      <ul>
+        <li>ประจุชนิดเดียวกันผลักกัน</li>
+        <li>ประจุต่างชนิดกันดึงดูดกัน</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>2. กระแสไฟฟ้า (Electric Current)</h2>
+    <div class="card">
+      <p>
+        กระแสไฟฟ้าคืออัตราการไหลของประจุไฟฟ้าผ่านหน้าตัดของตัวนำ
+        มีหน่วยเป็นแอมแปร์ (A)
+      </p>
+      <div class="formula">
+        I = Q / t
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>3. ความต่างศักย์ไฟฟ้า (Potential Difference)</h2>
+    <div class="card">
+      <p>
+        ความต่างศักย์คือพลังงานที่ใช้ในการเคลื่อนย้ายประจุไฟฟ้าต่อหนึ่งหน่วยประจุ
+        มีหน่วยเป็นโวลต์ (V)
+      </p>
+      <div class="formula">
+        V = W / Q
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>4. ความต้านทานไฟฟ้า (Resistance)</h2>
+    <div class="card">
+      <p>
+        ความต้านทานคือสมบัติของตัวนำที่ขัดขวางการไหลของกระแสไฟฟ้า
+        มีหน่วยเป็นโอห์ม (Ω)
+      </p>
+      <div class="formula">
+        V = IR (กฎของโอห์ม)
+      </div>
+    </div>
+  </section>
+
+  <a href="index.html" class="back">← กลับหน้าแรก</a>
+
+</main>
+
+<footer>
+  © 2025 Pixture-Academy
+</footer>
+
+</body>
+</html>
