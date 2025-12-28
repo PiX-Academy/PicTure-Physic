@@ -13,7 +13,6 @@
   --blue1:#7ec9ff;
   --blue2:#3a7bd5;
   --dark1:#0d1117;
-  --dark2:#1a232e;
   --darkSoft:#141a22;
   --muted:#b9c2cf;
   --text:#f5faff;
@@ -25,6 +24,7 @@
 
 body{
   margin:0;
+  padding-top:80px; /* เผื่อ navbar */
   background:var(--dark1);
   font-family:Inter,Prompt;
   color:var(--text);
@@ -37,6 +37,7 @@ body{
   position:fixed;
   top:0;
   width:100%;
+  height:80px;
   backdrop-filter:blur(12px);
   background:rgba(10,12,18,.55);
   padding:16px 28px;
@@ -91,9 +92,7 @@ body{
 }
 
 /* ===================== DROPDOWN ===================== */
-.dropdown{
-  position:relative;
-}
+.dropdown{position:relative;}
 
 .dropdown-menu{
   position:absolute;
@@ -128,33 +127,31 @@ body{
   color:var(--blue1);
 }
 
-/* ===================== POSTER HERO ===================== */
+/* ===================== HERO ===================== */
 .hero{
-  height: 75vh;
-  position: relative;
-  overflow: hidden;
+  height:75vh;
+  position:relative;
+  overflow:hidden;
 }
 
 .hero::before{
   content:"";
   position:absolute;
   inset:0;
+  z-index:0; /* อยู่หลัง */
   background:
     linear-gradient(
       rgba(10,12,18,.35),
-      rgba(10,12,18,.5)
+      rgba(10,12,18,.55)
     ),
-    url("physic.jpg") center 60% / contain no-repeat;
+    url("physic.jpg") center / cover no-repeat;
 }
-
-
-
-
 
 /* คลิกทั้งโปสเตอร์ */
 .hero a{
   position:absolute;
   inset:0;
+  z-index:1; /* อยู่หน้า */
 }
 
 /* ===================== CONTENT ===================== */
@@ -226,7 +223,7 @@ footer{
   </ul>
 </nav>
 
-<!-- POSTER HERO -->
+<!-- HERO -->
 <header class="hero">
   <a href="#chapters" aria-label="เริ่มเรียน"></a>
 </header>
