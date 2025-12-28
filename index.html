@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pixture-Academy · Physics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===================== ROOT ===================== */
+:root{
+  --blue1:#7ec9ff;
+  --blue2:#3a7bd5;
+  --dark1:#0d1117;
+  --dark2:#1a232e;
+  --darkSoft:#141a22;
+  --muted:#b9c2cf;
+  --text:#f5faff;
+  --radius:22px;
+  --shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--dark1);
+  font-family:Inter,Prompt;
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ===================== NAV ===================== */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  backdrop-filter:blur(12px);
+  background:rgba(10,12,18,.55);
+  padding:16px 28px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:1000;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--blue1),var(--blue2));
+  box-shadow:0 0 18px rgba(122,194,255,.4);
+}
+
+.brand h1{
+  margin:0;
+  font-size:22px;
+}
+
+/* ===================== MENU ===================== */
+.menu{
+  display:flex;
+  list-style:none;
+  gap:26px;
+  margin:0;
+  padding:0;
+  align-items:center;
+}
+
+.menu > li > a{
+  text-decoration:none;
+  color:var(--text);
+  font-size:16px;
+  font-weight:500;
+  padding:10px 8px;
+  border-radius:10px;
+  transition:.2s;
+}
+
+.menu > li > a:hover{
+  color:var(--blue1);
+}
+
+/* ===================== DROPDOWN ===================== */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:55px;
+  left:-80px;
+  background:rgba(20,25,35,.75);
+  backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  list-style:none;
+  padding:10px 0;
+  margin:0;
+  min-width:210px;
+  box-shadow:0 12px 35px rgba(0,0,0,.45);
+
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(10px);
+  transition:.25s ease;
+}
+
+.dropdown-menu li a{
+  display:block;
+  padding:10px 18px;
+  text-decoration:none;
+  color:var(--text);
+  font-size:15px;
+}
+
+.dropdown-menu li a:hover{
+  background:rgba(255,255,255,.08);
+  color:var(--blue1);
+}
+
+/* ===================== POSTER HERO ===================== */
+.hero{
+  height: 75vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      rgba(10,12,18,.35),
+      rgba(10,12,18,.5)
+    ),
+    url("Physics.jpg") center 60% / contain no-repeat;
+}
+
+
+
+
+
+/* คลิกทั้งโปสเตอร์ */ห
+.hero a{
+  position:absolute;
+  inset:0;
+}
+
+/* ===================== CONTENT ===================== */
+.section{
+  max-width:1200px;
+  margin:80px auto 50px;
+  padding:0 24px;
+}
+
+.grid{
+  display:grid;
+  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+}
+
+.card{
+  background:linear-gradient(145deg,var(--darkSoft),#0f141a);
+  border-radius:var(--radius);
+  padding:28px;
+  box-shadow:var(--shadow);
+  border:1px solid rgba(255,255,255,.06);
+  transition:.25s;
+  text-decoration:none;
+  color:var(--text);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+}
+
+.more{
+  color:var(--blue1);
+  font-weight:600;
+}
+
+/* ===================== FOOTER ===================== */
+footer{
+  margin-top:100px;
+  padding:40px;
+  text-align:center;
+  color:var(--muted);
+  border-top:1px solid rgba(255,255,255,.08);
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="brand">
+    <div class="logo"></div>
+    <h1>Pixture-Academy</h1>
+  </div>
+
+  <ul class="menu">
+    <li><a href="index.html">หน้าแรก</a></li>
+
+    <li class="dropdown">
+      <a href="#">เนื้อหา ▾</a>
+      <ul class="dropdown-menu">
+        <li><a href="lesson1.html">บทที่ 1 · การเคลื่อนที่</a></li>
+        <li><a href="lesson2.html">บทที่ 2 · งานและพลังงาน</a></li>
+        <li><a href="lesson3.html">บทที่ 3 · ไฟฟ้า</a></li>
+        <li><a href="lesson4.html">บทที่ 4 · คลื่น</a></li>
+        <li><a href="lesson5.html">บทที่ 5 · ฟิสิกส์สมัยใหม่</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- POSTER HERO -->
+<header class="hero">
+  <a href="#chapters" aria-label="เริ่มเรียน"></a>
+</header>
+
+<!-- CHAPTERS -->
+<section class="section" id="chapters">
+  <div class="grid">
+
+    <a href="lesson1.html" class="card">
+      <h3>บทที่ 1 · แรงและการเคลื่อนที่</h3>
+      <p>แรงลัพธ์ · การเร่ง · กฎนิวตัน</p>
+      <span class="more">ไปที่บทนี้ →</span>
+    </a>
+
+    <a href="lesson2.html" class="card">
+      <h3>บทที่ 2 · งานและพลังงาน</h3>
+      <p>งาน · PE · KE · กฎอนุรักษ์พลังงาน</p>
+      <span class="more">ไปที่บทนี้ →</span>
+    </a>
+
+    <a href="lesson3.html" class="card">
+      <h3>บทที่ 3 · ไฟฟ้า</h3>
+      <p>ประจุ · กระแส · ความต่างศักย์</p>
+      <span class="more">ไปที่บทนี้ →</span>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  © 2025 Pixture-Academy
+</footer>
+
+<!-- ===================== JS DROPDOWN ===================== -->
+<script>
+document.querySelectorAll('.dropdown > a').forEach(trigger => {
+  trigger.addEventListener('click', function(e){
+    e.preventDefault();
+    let menu = this.nextElementSibling;
+
+    if(menu.style.opacity === '1'){
+      menu.style.opacity = '0';
+      menu.style.pointerEvents = 'none';
+      menu.style.transform = 'translateY(10px)';
+    }else{
+      menu.style.opacity = '1';
+      menu.style.pointerEvents = 'auto';
+      menu.style.transform = 'translateY(0)';
+    }
+  });
+});
+
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.dropdown')){
+    document.querySelectorAll('.dropdown-menu').forEach(menu=>{
+      menu.style.opacity = '0';
+      menu.style.pointerEvents = 'none';
+      menu.style.transform = 'translateY(10px)';
+    });
+  }
+});
+</script>
+
+</body>
+</html>
