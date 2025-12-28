@@ -129,12 +129,6 @@ body{
 }
 
 /* ===================== POSTER HERO ===================== */
-.hero{
-  height: 75vh;
-  position: relative;
-  overflow: hidden;
-}
-
 .hero::before{
   content:"";
   position:absolute;
@@ -144,14 +138,15 @@ body{
       rgba(10,12,18,.35),
       rgba(10,12,18,.5)
     ),
-    url("physic.jpg") center 60% / contain no-repeat;
+    url("physic.jpg") center / cover no-repeat;
 }
 
 
 
 
 
-/* คลิกทั้งโปสเตอร์ */ห
+
+/* คลิกทั้งโปสเตอร์ */
 .hero a{
   position:absolute;
   inset:0;
@@ -292,4 +287,3 @@ document.addEventListener('click', function(e){
 
 </body>
 </html>
-
