@@ -5,51 +5,56 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pixture-Academy · Physics</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Prompt:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ===================== ROOT ===================== */
+/* ================= DESIGN SYSTEM ================= */
 :root{
-  --blue1:#3a7bd5;
-  --blue2:#7ec9ff;
-  --bg:#ffffff;
-  --bg-soft:#f4f7fb;
-  --text:#0d1117;
-  --muted:#6b7280;
+  --blue:#1e40af;
+  --accent-1:#6366f1;
+  --accent-2:#22d3ee;
+  --bg:#f8fafc;
+  --surface:#ffffff;
+  --text:#0f172a;
+  --muted:#64748b;
   --border:#e5e7eb;
-  --radius:22px;
-  --shadow:0 18px 45px rgba(0,0,0,.08);
+  --radius-lg:28px;
+  --radius-md:20px;
+  --shadow-soft:0 12px 30px rgba(0,0,0,.06);
+  --shadow-hover:0 28px 70px rgba(0,0,0,.12);
+  --transition:.35s ease;
 }
 
 *{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 
 body{
   margin:0;
   padding-top:80px;
-  background:var(--bg);
-  font-family:Inter,Prompt;
+  background:
+    radial-gradient(1200px 400px at top,#eef2ff,transparent 60%),
+    var(--bg);
+  font-family:Inter,Prompt,sans-serif;
   color:var(--text);
-  line-height:1.7;
 }
 
-/* ===================== NAV ===================== */
+/* ================= NAVBAR ================= */
 .nav{
   position:fixed;
   top:0;
   width:100%;
   height:80px;
   background:rgba(255,255,255,.85);
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
   z-index:1000;
 }
 
-/* 🔑 ตัวแก้ปัญหาหลัก */
 .nav-inner{
   max-width:1200px;
   height:100%;
-  margin:0 auto;
-  padding:0 20px;
+  margin:auto;
+  padding:0 24px;
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -58,161 +63,221 @@ body{
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
 }
 
 .logo{
   width:42px;
   height:42px;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--blue1),var(--blue2));
+  border-radius:16px;
+  background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
 }
 
 .brand h1{
+  font-size:18px;
   margin:0;
-  font-size:22px;
-  font-weight:700;
+  font-weight:600;
 }
 
-/* ===================== MENU ===================== */
 .menu{
   display:flex;
   list-style:none;
-  gap:22px;
+  gap:26px;
   margin:0;
   padding:0;
   align-items:center;
 }
 
-.menu > li > a{
+.menu a{
   text-decoration:none;
-  color:var(--text);
-  font-size:16px;
+  color:var(--muted);
   font-weight:500;
-  padding:8px 6px;
-  border-radius:10px;
-  transition:.2s;
+  padding:8px 10px;
+  transition:var(--transition);
 }
+.menu a:hover{color:var(--blue);}
 
-.menu > li > a:hover{
-  color:var(--blue1);
+/* ================= DROPDOWN ================= */
+.dropdown{
+  position:relative;
 }
-
-/* ===================== DROPDOWN ===================== */
-.dropdown{position:relative;}
 
 .dropdown-menu{
   position:absolute;
-  top:52px;
-  left:50%;
-  transform:translateX(-50%) translateY(10px);
-  background:#fff;
+  top:100%;
+  left:0;
+  min-width:260px;
+  background:var(--surface);
   border:1px solid var(--border);
-  border-radius:14px;
+  border-radius:16px;
+  box-shadow:var(--shadow-soft);
   list-style:none;
   padding:10px 0;
-  margin:0;
-  min-width:220px;
-  box-shadow:var(--shadow);
+  margin:14px 0 0;
   opacity:0;
-  pointer-events:none;
+  visibility:hidden;
+  transform:translateY(10px);
   transition:.25s ease;
+  z-index:999;
+}
+
+.dropdown:hover .dropdown-menu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
 }
 
 .dropdown-menu li a{
   display:block;
   padding:10px 18px;
-  text-decoration:none;
+  font-size:14px;
   color:var(--text);
-  font-size:15px;
 }
 
 .dropdown-menu li a:hover{
-  background:var(--bg-soft);
-  color:var(--blue1);
+  background:#eef2ff;
+  color:var(--blue);
 }
 
-/* ===================== HERO ===================== */
+/* ================= HERO ================= */
 .hero{
-  height:70vh;
+  max-width:1200px;
+  margin:40px auto 0;
+  padding:0 24px;
+  cursor:grab;
+}
+.hero.dragging{cursor:grabbing;}
+
+.hero-viewport{
+  overflow:hidden;
+  border-radius:var(--radius-lg);
+}
+
+.hero-track{
   display:flex;
+  transition:transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.hero-slide{
+  min-width:100%;
+  aspect-ratio:18 / 9;
+}
+
+.hero-slide img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  user-select:none;
+  pointer-events:none;
+}
+
+/* dots */
+.hero-dots{
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:22px;
+}
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#c7d2fe;
+  cursor:pointer;
+}
+.dot.active{
+  background:linear-gradient(135deg,var(--accent-1),var(--accent-2));
+  transform:scale(1.2);
+}
+
+/* ================= SECTION TITLE ================= */
+.section-title{
+  margin-top:90px;
+  min-height:150px;
+  padding:24px 16px;
+  display:flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  text-align:center;
-  background:var(--bg);
-}
-
-.hero-content{
-  max-width:720px;
-  padding:0 24px;
-}
-
-.hero h2{
-  font-size:46px;
-  margin:0 0 14px;
-}
-
-.hero p{
-  font-size:18px;
-  color:var(--muted);
-  margin-bottom:32px;
-}
-
-.hero a{
-  display:inline-block;
-  padding:14px 28px;
-  border-radius:999px;
-  background:linear-gradient(135deg,var(--blue1),var(--blue2));
+  gap:12px;
+  background:linear-gradient(135deg,#0f172a,#1e293b);
   color:#fff;
-  text-decoration:none;
-  font-weight:600;
-  box-shadow:var(--shadow);
+  text-align:center;
 }
 
-/* ===================== CONTENT ===================== */
+.section-title h1{
+  margin:0;
+  font-size:clamp(28px,4vw,40px);
+}
+
+.section-desc{
+  max-width:720px;
+  font-size:15px;
+  color:#c7d2fe;
+}
+
+/* ================= CONTENT ================= */
 .section{
   max-width:1200px;
-  margin:80px auto 50px;
+  margin:60px auto;
   padding:0 24px;
 }
 
 .grid{
   display:grid;
-  gap:30px;
+  gap:32px;
   grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
 }
 
 .card{
-  background:#fff;
-  border-radius:var(--radius);
-  padding:28px;
-  box-shadow:var(--shadow);
+  background:var(--surface);
   border:1px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:32px;
+  box-shadow:var(--shadow-soft);
   text-decoration:none;
   color:var(--text);
-  transition:.25s;
+  transition:var(--transition);
 }
-
 .card:hover{
   transform:translateY(-8px);
+  box-shadow:var(--shadow-hover);
 }
 
-.card p{
-  color:var(--muted);
+/* ================= INSTRUCTOR ================= */
+.instructor-section{
+  padding:90px 24px;
+  background:linear-gradient(to bottom,transparent,#eef2ff);
 }
 
-.more{
-  color:var(--blue1);
-  font-weight:600;
+.instructor-container{
+  max-width:1200px;
+  margin:auto;
 }
 
-/* ===================== FOOTER ===================== */
-footer{
-  margin-top:100px;
-  padding:40px;
-  text-align:center;
-  color:var(--muted);
-  border-top:1px solid var(--border);
+.instructor-card{
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:40px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  padding:48px;
+  box-shadow:var(--shadow-soft);
+}
+
+.instructor-avatar img{
+  width:200px;
+  height:200px;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+@media(max-width:900px){
+  .instructor-card{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
 }
 </style>
 </head>
@@ -222,7 +287,6 @@ footer{
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-
     <div class="brand">
       <div class="logo"></div>
       <h1>Pixture-Academy</h1>
@@ -230,87 +294,221 @@ footer{
 
     <ul class="menu">
       <li><a href="#top">หน้าแรก</a></li>
+
       <li class="dropdown">
         <a href="#">เนื้อหา ▾</a>
         <ul class="dropdown-menu">
           <li><a href="lesson1.html">บทที่ 1 · การเคลื่อนที่</a></li>
           <li><a href="lesson2.html">บทที่ 2 · งานและพลังงาน</a></li>
           <li><a href="lesson3.html">บทที่ 3 · ไฟฟ้า</a></li>
-          <li><a href="lesson4.html">บทที่ 4 · คลื่น</a></li>
-          <li><a href="lesson5.html">บทที่ 5 · ฟิสิกส์สมัยใหม่</a></li>
         </ul>
       </li>
     </ul>
-
   </div>
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="top">
-  <div class="hero-content">
-    <h2>Physics for Everyone</h2>
-    <p>เรียนฟิสิกส์อย่างเข้าใจ เป็นระบบ และนำไปใช้ได้จริง</p>
-    <a href="#chapters">เริ่มเรียน</a>
+<section class="hero" id="top">
+  <div class="hero-viewport">
+    <div class="hero-track">
+      <div class="hero-slide"><img src="pho.jpg"></div>
+      <div class="hero-slide"><img src="phi.jpg"></div>
+      <div class="hero-slide"><img src="phy.jpg"></div>
+    </div>
   </div>
-</header>
 
-<!-- CHAPTERS -->
-<section class="section" id="chapters">
+  <div class="hero-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<!-- TITLE -->
+<section class="section-title">
+  <h1>เนื้อหา</h1>
+  <p class="section-desc">รวมบทเรียนฟิสิกส์ อธิบายเป็นขั้นตอน เข้าใจง่าย</p>
+</section>
+
+<!-- CONTENT -->
+<!-- CONTENT -->
+<section class="section">
   <div class="grid">
 
-    <a href="lesson1.html" class="card">
-      <h3>บทที่ 1 · แรงและการเคลื่อนที่</h3>
-      <p>แรงลัพธ์ · การเร่ง · กฎนิวตัน</p>
-      <span class="more">ไปที่บทนี้ →</span>
+    <!-- ม.4 -->
+    <a class="card" href="lesson1.html">
+      <h3>บทที่ 1 · การเคลื่อนที่</h3>
+      <p>ตำแหน่ง ความเร็ว ความเร่ง</p>
     </a>
 
-    <a href="lesson2.html" class="card">
-      <h3>บทที่ 2 · งานและพลังงาน</h3>
-      <p>งาน · PE · KE · กฎอนุรักษ์พลังงาน</p>
-      <span class="more">ไปที่บทนี้ →</span>
+    <a class="card" href="lesson2.html">
+      <h3>บทที่ 2 · แรงและกฎการเคลื่อนที่</h3>
+      <p>แรง กฎของนิวตัน แรงเสียดทาน</p>
     </a>
 
-    <a href="lesson3.html" class="card">
-      <h3>บทที่ 3 · ไฟฟ้า</h3>
-      <p>ประจุ · กระแส · ความต่างศักย์</p>
-      <span class="more">ไปที่บทนี้ →</span>
+    <a class="card" href="lesson3.html">
+      <h3>บทที่ 3 · งาน พลังงาน และกำลัง</h3>
+      <p>งาน พลังงานกล กฎการอนุรักษ์</p>
+    </a>
+
+    <a class="card" href="lesson4.html">
+      <h3>บทที่ 4 · โมเมนตัมและการชน</h3>
+      <p>โมเมนตัม การดล การชน</p>
+    </a>
+
+    <!-- ม.5 -->
+    <a class="card" href="lesson5.html">
+      <h3>บทที่ 5 · การเคลื่อนที่แบบหมุน</h3>
+      <p>แรงบิด โมเมนต์ความเฉื่อย</p>
+    </a>
+
+    <a class="card" href="lesson6.html">
+      <h3>บทที่ 6 · สมดุลกล</h3>
+      <p>สมดุลต่อการเลื่อนและหมุน</p>
+    </a>
+
+    <a class="card" href="lesson7.html">
+      <h3>บทที่ 7 · งานและพลังงานในระบบ</h3>
+      <p>พลังงานศักย์ พลังงานจลน์</p>
+    </a>
+
+    <a class="card" href="lesson8.html">
+      <h3>บทที่ 8 · ไฟฟ้าสถิต</h3>
+      <p>ประจุไฟฟ้า กฎของคูลอมบ์</p>
+    </a>
+
+    <a class="card" href="lesson9.html">
+      <h3>บทที่ 9 · ไฟฟ้ากระแส</h3>
+      <p>กระแสไฟฟ้า แรงดัน ความต้านทาน</p>
+    </a>
+
+    <a class="card" href="lesson10.html">
+      <h3>บทที่ 10 · แม่เหล็กและไฟฟ้า</h3>
+      <p>สนามแม่เหล็ก แรงแม่เหล็ก</p>
+    </a>
+
+    <!-- ม.6 -->
+    <a class="card" href="lesson11.html">
+      <h3>บทที่ 11 · คลื่นกล</h3>
+      <p>คลื่น การสะท้อน การแทรกสอด</p>
+    </a>
+
+    <a class="card" href="lesson12.html">
+      <h3>บทที่ 12 · เสียง</h3>
+      <p>การเกิดเสียง ความถี่ บีต</p>
+    </a>
+
+    <a class="card" href="lesson13.html">
+      <h3>บทที่ 13 · แสง</h3>
+      <p>การสะท้อน หักเห เลนส์</p>
+    </a>
+
+    <a class="card" href="lesson14.html">
+      <h3>บทที่ 14 · ฟิสิกส์อะตอม</h3>
+      <p>โครงสร้างอะตอม ระดับพลังงาน</p>
+    </a>
+
+    <a class="card" href="lesson15.html">
+      <h3>บทที่ 15 · ฟิสิกส์นิวเคลียร์</h3>
+      <p>กัมมันตรังสี ฟิชชัน ฟิวชัน</p>
     </a>
 
   </div>
 </section>
 
-<footer>
-  © 2025 Pixture-Academy
-</footer>
 
-<!-- ===================== JS DROPDOWN ===================== -->
+<!-- INSTRUCTOR -->
+<section class="instructor-section">
+  <div class="instructor-container">
+    <div class="instructor-card">
+      <div class="instructor-avatar">
+        <img src="teacher.jpg" alt="ผู้สอน">
+      </div>
+      <div>
+        <h3>Pixture-Academy Physics</h3>
+        <p>ผู้สอนฟิสิกส์ระดับมัธยม เน้นเข้าใจจริง ไม่ท่องจำ</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <script>
-document.querySelectorAll('.dropdown > a').forEach(trigger=>{
-  trigger.addEventListener('click',e=>{
-    e.preventDefault();
-    const menu = trigger.nextElementSibling;
+/* ================= HERO DRAG + AUTO ================= */
+const hero = document.querySelector('.hero');
+const track = document.querySelector('.hero-track');
+const slides = document.querySelectorAll('.hero-slide');
+const dots = document.querySelectorAll('.dot');
 
-    if(menu.style.opacity === '1'){
-      menu.style.opacity = '0';
-      menu.style.pointerEvents = 'none';
-      menu.style.transform = 'translateX(-50%) translateY(10px)';
-    }else{
-      menu.style.opacity = '1';
-      menu.style.pointerEvents = 'auto';
-      menu.style.transform = 'translateX(-50%) translateY(0)';
-    }
-  });
+let index = 0;
+let startX = 0;
+let currentX = 0;
+let dragging = false;
+let autoTimer;
+
+function go(i){
+  index = (i + slides.length) % slides.length;
+  track.style.transform = `translateX(-${index * 100}%)`;
+  dots.forEach(d=>d.classList.remove('active'));
+  dots[index].classList.add('active');
+}
+
+function startAuto(){
+  autoTimer = setInterval(()=>go(index + 1),5000);
+}
+function resetAuto(){
+  clearInterval(autoTimer);
+  startAuto();
+}
+
+dots.forEach((dot,i)=>{
+  dot.onclick = ()=>{ go(i); resetAuto(); };
 });
 
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.dropdown')){
-    document.querySelectorAll('.dropdown-menu').forEach(menu=>{
-      menu.style.opacity='0';
-      menu.style.pointerEvents='none';
-      menu.style.transform='translateX(-50%) translateY(10px)';
-    });
+function dragStart(x){
+  dragging = true;
+  startX = x;
+  hero.classList.add('dragging');
+  track.style.transition = 'none';
+}
+
+function dragMove(x){
+  if(!dragging) return;
+  currentX = x - startX;
+
+  if(index === 0 && currentX > 0) currentX *= 0.35;
+  if(index === slides.length - 1 && currentX < 0) currentX *= 0.35;
+
+  track.style.transform =
+    `translateX(calc(-${index * 100}% + ${currentX}px))`;
+}
+
+function dragEnd(){
+  if(!dragging) return;
+  dragging = false;
+  hero.classList.remove('dragging');
+  track.style.transition = '';
+
+  if(Math.abs(currentX) > hero.offsetWidth / 4){
+    currentX < 0 ? go(index + 1) : go(index - 1);
+  }else{
+    go(index);
   }
-});
+
+  currentX = 0;
+  resetAuto();
+}
+
+/* mouse */
+hero.addEventListener('mousedown',e=>dragStart(e.clientX));
+window.addEventListener('mousemove',e=>dragMove(e.clientX));
+window.addEventListener('mouseup',dragEnd);
+
+/* touch */
+hero.addEventListener('touchstart',e=>dragStart(e.touches[0].clientX));
+hero.addEventListener('touchmove',e=>dragMove(e.touches[0].clientX));
+hero.addEventListener('touchend',dragEnd);
+
+startAuto();
 </script>
 
 </body>
